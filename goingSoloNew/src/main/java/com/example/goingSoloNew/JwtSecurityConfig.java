@@ -54,7 +54,7 @@ public class JwtSecurityConfig {
          
         authProvider.setUserDetailsService(customUserDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
-     
+      
         return authProvider;
     }
 	
