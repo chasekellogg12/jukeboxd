@@ -87,51 +87,19 @@ public class NewAuthController {
 
     @PostMapping("/register")
     //@Transactional
-    public ResponseEntity<JwtRespose> registerUser(@RequestBody CreateUserRequest registrationRequest) {
-    //public ResponseEntity<?> registerUser(@RequestBody CreateUserRequest registrationRequest) {
-        // Assuming RegistrationRequest is a class with username and password fields
-
-        // You may want to add validation for the request fields before proceeding
-
-        // Create a new user
-    	// Use our version of User instead of spring security's so we can include email and name fields
-    	// we also need our version of UserDetials so that we can give it to UsernamePasswordAuthenticationToken
-//        var user = User.withUsername(registrationRequest.getUsername())
-//                .password(passwordEncoder.encode(registrationRequest.getPassword()))
-//                .roles("USER")
-//                .build();
-        
-//		var user = User.withUsername(registrationRequest.getUsername())
-//			.password(passwordEncoder.encode(registrationRequest.getPassword()))
-//			//.passwordEncoder(str -> passwordEncoder.encode(str))
-//			.roles("USER")
-//			.build();
-//
-//        // Add the new user to the user details manager
-//        
-//        var jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
-//        jdbcUserDetailsManager.createUser(user);
-//        
-////        MyUser newUser = new MyUser(registrationRequest.getName(), registrationRequest.getEmail(), registrationRequest.getUsername(), passwordEncoder.encode(registrationRequest.getPassword()));
-////    	userRepository.save(newUser);
-////        MyAuthority newAuth = new MyAuthority();
-////        newAuth.setUsername(newUser.getUsername());
-////        newAuth.setAuthority("ROLE_USER");
-////        authorityRepository.save(newAuth);
-//        
-//        // Authenticate the user to obtain the Authentication object
-//        // This creates an Authentication object in the same way that the httpBasic does it (I think. We might have to set the security context, but the token seems to work without doing so)
-//        
-//        // have 2 different repositories: 
-//        	// one with jdbcUserDetailsManager which contains Username/Password
-//        	// and one with JPA which contains username/email/name
-//        
-//        UserDetails userDetails = jdbcUserDetailsManager.loadUserByUsername(registrationRequest.getUsername());
-//        //UserDetails userDetails = customUserDetailsService.loadUserByUsername(registrationRequest.getUsername());
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//        System.out.println(authentication.getPrincipal());
-//        System.out.println(authentication.getCredentials());
-//        System.out.println(authentication.getName());
+    public ResponseEntity<?> registerUser(@RequestBody CreateUserRequest registrationRequest) {
+    	if (userRepository.existsById(registrationRequest.getUsername())) {
+    		return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Error: Username is already taken!");
+    	}
+    	
+    	if (userRepository.existsByEmail(registrationRequest.getEmail())) {
+    		return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Error: An account with this email already exists!");
+    	}
+    	
     	
 	    MyUser newUser = new MyUser(registrationRequest.getName(), registrationRequest.getEmail(), registrationRequest.getUsername(), passwordEncoder.encode(registrationRequest.getPassword()));
 		userRepository.save(newUser);
