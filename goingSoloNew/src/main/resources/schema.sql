@@ -4,8 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
   enabled BOOLEAN NOT NULL,
   name VARCHAR NOT NULL,
   email VARCHAR UNIQUE NOT NULL,
-  avatar VARCHAR,
-  rating INTEGER
+  avatar VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS authorities (
@@ -30,7 +29,8 @@ CREATE TABLE IF NOT EXISTS posts (
   author_username VARCHAR(255) REFERENCES users(username),
   text TEXT,
   date_posted TIMESTAMP,
-  track_id VARCHAR(255) REFERENCES tracks(track_id)
+  track_id VARCHAR(255) REFERENCES tracks(track_id),
+  rating INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS my_likes (
