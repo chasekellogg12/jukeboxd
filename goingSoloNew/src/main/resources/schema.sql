@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
   name VARCHAR NOT NULL,
   email VARCHAR UNIQUE NOT NULL,
   avatar VARCHAR,
-  rating INTEGER NOT NULL
+  rating INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS authorities (

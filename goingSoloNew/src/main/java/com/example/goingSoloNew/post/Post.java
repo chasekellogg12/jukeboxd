@@ -45,7 +45,6 @@ public class Post {
     @JoinColumn(name = "track_id")
     private Track postSubject;
     
-    @Column(nullable = false, length = 255)
     private int rating;  
 	
 	public Post() {
@@ -58,6 +57,7 @@ public class Post {
 		Calendar c = Calendar.getInstance();
 		this.datePosted = c.getTime();
 		this.postSubject = subject;
+		this.rating = 0;
 	}
 
 	public Long getPostId() {
