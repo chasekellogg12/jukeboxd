@@ -50,7 +50,9 @@ public class PostService {
         dto.setDatePosted(post.getDatePosted());
         dto.setUsernamesWhoLiked(likesToUsernameList(post.getLikes()));
         dto.setStringUsernamesWhoLiked(likesToStringUsernameList(post.getLikes()));
+        dto.setRating(post.getRating());
         Track subject = post.getPostSubject();
+        
         dto.setPostSubjectBasicInfo(new TrackBasicInfo(subject.getTrackId(), subject.getName(), subject.getAlbumCoverArt(), subject.getArtist(), subject.getYear()));
         return dto;
     }
@@ -77,7 +79,8 @@ public class PostService {
 								  String artist,
 								  String album,
 								  String year,
-								  String albumCoverArt) {
+								  String albumCoverArt,
+								  int rating) {
 		Optional<MyUser> thisUser = userRepository.findById(author);
 		MyUser authorUser = thisUser
 				.map(user -> user)
@@ -87,6 +90,7 @@ public class PostService {
 		trackRepository.save(newTrack);
 		
 		Post newPost = new Post(authorUser, postText, newTrack);
+		newPost.setRating(rating);
 		this.postRepository.save(newPost);
 		Calendar c = Calendar.getInstance();
 		List<NewActivity> newRecentActivity = authorUser.getRecentActivity();

@@ -8,6 +8,7 @@ public class CreatePostRequest {
 	private String album;
 	private String year;
 	private String albumCoverArt;
+	private int rating;
 	
 	public CreatePostRequest() {
 		
@@ -71,6 +72,14 @@ public class CreatePostRequest {
 
 	public void setAlbumCoverArt(String albumCoverArt) {
 		this.albumCoverArt = albumCoverArt;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
 	

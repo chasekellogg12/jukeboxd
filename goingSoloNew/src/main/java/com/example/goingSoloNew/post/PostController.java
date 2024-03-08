@@ -28,7 +28,8 @@ public class PostController {
 										 createPostRequest.getArtist(),
 										 createPostRequest.getAlbum(),
 										 createPostRequest.getYear(),
-										 createPostRequest.getAlbumCoverArt());
+										 createPostRequest.getAlbumCoverArt(), 
+										 createPostRequest.getRating());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	

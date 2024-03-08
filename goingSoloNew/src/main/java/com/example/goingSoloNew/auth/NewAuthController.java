@@ -91,15 +91,14 @@ public class NewAuthController {
     	if (userRepository.existsById(registrationRequest.getUsername())) {
     		return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body("Error: Username is already taken!");
+                    .body("Error: That username is already taken!");
     	}
     	
     	if (userRepository.existsByEmail(registrationRequest.getEmail())) {
     		return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body("Error: An account with this email already exists!");
+                    .body("Error: An account with that email already exists!");
     	}
-    	
     	
 	    MyUser newUser = new MyUser(registrationRequest.getName(), registrationRequest.getEmail(), registrationRequest.getUsername(), passwordEncoder.encode(registrationRequest.getPassword()));
 		userRepository.save(newUser);

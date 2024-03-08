@@ -44,6 +44,8 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "track_id")
     private Track postSubject;
+    
+    private int rating;  
 	
 	public Post() {
 		
@@ -104,5 +106,14 @@ public class Post {
 	public void setPostSubject(Track postSubject) {
 		this.postSubject = postSubject;
 	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
 	
 }

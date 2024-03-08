@@ -15,6 +15,7 @@ public class PostDTO {
 	private List<MyUserDTO> usernamesWhoLiked;
 	private List<String> stringUsernamesWhoLiked;
 	private TrackBasicInfo postSubjectBasicInfo;
+	private int rating;
 	// should have just a list of usernames who liked as strings
 	
 	public PostDTO() {
@@ -76,7 +77,14 @@ public class PostDTO {
 	public void setPostSubjectBasicInfo(TrackBasicInfo postSubjectBasicInfo) {
 		this.postSubjectBasicInfo = postSubjectBasicInfo;
 	}
-	
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 	
 	
 }
