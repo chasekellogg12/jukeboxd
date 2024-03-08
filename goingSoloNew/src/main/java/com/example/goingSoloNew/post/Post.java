@@ -45,6 +45,7 @@ public class Post {
     @JoinColumn(name = "track_id")
     private Track postSubject;
     
+    @Column(nullable = false, length = 255)
     private int rating;  
 	
 	public Post() {

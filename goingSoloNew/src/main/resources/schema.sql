@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS users (
   enabled BOOLEAN NOT NULL,
   name VARCHAR NOT NULL,
   email VARCHAR UNIQUE NOT NULL,
-  avatar VARCHAR
+  avatar VARCHAR,
+  rating INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS authorities (
