@@ -118,7 +118,7 @@ public class PostService {
 	}
 	
 	public void handleDeletePost(Long postId) {
-	    Post post = postRepository.findById(postId).orElseThrow(() -> new NoSuchElementException("User not found"));
+	    Post post = postRepository.findById(postId).orElseThrow(() -> new NoSuchElementException("Post not found"));
 	    MyUser author = post.getAuthor();
 	    author.getPosts().remove(post);
 	    userRepository.save(author);

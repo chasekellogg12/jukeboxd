@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,4 +27,12 @@ public class MyLikeController {
 		return new ResponseEntity<>(HttpStatus.OK);
 		// return the post that was liked
 	}
+	
+	@PostMapping("/deleteLike/{username}/{postId}")
+	public ResponseEntity<?> handleDeleteLike(@PathVariable String username, @PathVariable Long postId) {
+		myLikeService.handleDeleteLike(username, postId);
+		return new ResponseEntity<>(HttpStatus.OK);
+		// return the post that was liked
+	}
+	
 }

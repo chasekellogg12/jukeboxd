@@ -2,6 +2,7 @@ package com.example.goingSoloNew.myLike;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,19 @@ public class MyLikeService {
 			user.setRecentActivity(newRecentActivity);
 			userRepository.save(user);
 		}
+	}
+	
+	public void handleDeleteLike(String username, Long postId) {
+		MyUser user = userRepository.findById(username).orElseThrow(() -> new NoSuchElementException("User not found"));
+		Post post = postRepository.findById(postId).orElseThrow(() -> new NoSuchElementException("Post not found"));
+		MyLike like = myLikeRepository.findByUserAndPost(username, postId);
+		
+		user.getLikes().remove(like);
+		userRepository.save(user);
+		post.getLikes().remove(like);
+		postRepository.save(post);
+		
+		myLikeRepository.delete(like);
 	}
 	
 }
