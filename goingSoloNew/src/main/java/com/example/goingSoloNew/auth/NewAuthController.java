@@ -18,6 +18,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -239,6 +240,21 @@ public class NewAuthController {
 				
 		return new ResponseEntity<>(myUserService.getUserDTO(followed.getUsername()), HttpStatus.OK);
 	}
+	
+	@PostMapping("/deleteFollow/{followerUsername}/{followingUsername}")
+	public ResponseEntity<?> handleDeleteFollow(@PathVariable String followerUsername, @PathVariable String followingUsername) {
+		MyUser follower = userRepository.findById(followerUsername).orElseThrow(() -> new NoSuchElementException("User not found"));
+		MyUser following = userRepository.findById(followingUsername).orElseThrow(() -> new NoSuchElementException("User not found"));
+		
+		follower.getFollowing().remove(following);
+		following.getFollowers().remove(follower);
+		
+		userRepository.save(follower);
+		userRepository.save(following);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	
 	
 	// you don't even to handle logout in the backend. Just remove it from local storage on the frontend
