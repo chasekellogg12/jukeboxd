@@ -44,4 +44,10 @@ public class PostController {
 		return new ResponseEntity<>(this.postService.handleGivePostsByUsers(certainPostRequest.getListOfUsers()), HttpStatus.OK);
 	}
 	
+	@PostMapping("/deletePost")
+	public ResponseEntity<?> deleteCertainPost(@RequestBody Long postId) {
+		this.postService.handleDeletePost(postId);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 }

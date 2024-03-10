@@ -116,4 +116,12 @@ public class PostService {
 				.collect(Collectors.toList());
 		return postList;
 	}
+	
+	public void handleDeletePost(Long postId) {
+	    Post post = postRepository.findById(postId).orElseThrow(() -> new NoSuchElementException("User not found"));
+	    MyUser author = post.getAuthor();
+	    author.getPosts().remove(post);
+	    userRepository.save(author);
+	    postRepository.delete(post);
+	}
 }
