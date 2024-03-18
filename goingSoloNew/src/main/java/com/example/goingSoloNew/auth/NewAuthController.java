@@ -174,6 +174,7 @@ public class NewAuthController {
 		if (user != null) {
 			user.setName(newInfoRequest.getName());
 			user.setEmail(newInfoRequest.getEmail());
+			user.setAvatar(newInfoRequest.getAvatar());
 			userRepository.save(user);
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
