@@ -42,6 +42,6 @@ public class MyUserService {
     }
     
     public BasicUserInfo userToBasicUserInfo(MyUser user) {
-    	return new BasicUserInfo(user.getUsername(), user.getName(), user.getEmail());
+    	return new BasicUserInfo(user.getUsername(), user.getName(), user.getAvatar());
     }
 }
