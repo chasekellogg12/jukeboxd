@@ -101,7 +101,7 @@ public class MyUser {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.avatar = "";
+		this.avatar = "https://i.imgur.com/qvvE7zW.png";
 		this.enabled = true;
 		
 		List<MyUser> emptyFollowersList = new ArrayList<MyUser>();
