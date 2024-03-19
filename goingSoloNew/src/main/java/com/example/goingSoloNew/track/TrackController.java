@@ -1,9 +1,12 @@
 package com.example.goingSoloNew.track;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,5 +33,10 @@ public class TrackController {
 											 topFourChangeRequest.getYear(),
 											 topFourChangeRequest.getAlbumCoverArt());
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/getRand10")
+	public ResponseEntity<List<Rand10>> createRand10() {
+		return new ResponseEntity<>(trackService.createRand10(), HttpStatus.OK);
 	}
 }
