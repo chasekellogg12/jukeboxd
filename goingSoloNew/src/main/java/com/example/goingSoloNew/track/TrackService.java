@@ -54,6 +54,9 @@ public class TrackService {
 		Random random = new Random();
 		// get all the tracks and put them into a list
 		List<Track> allTracks = trackRepository.findAll();
+		if (allTracks.size() == 0) {
+			return result;
+		}
 		int min = 0;
 		int max = allTracks.size();
 		
