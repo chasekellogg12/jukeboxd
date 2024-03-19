@@ -81,7 +81,7 @@ public class JwtSecurityConfig {
 		
 		http.authorizeHttpRequests(
 						auth -> {
-							auth.requestMatchers("/api/register", "/api/authenticate", "/api/allUsernames", "/api/userInfo", "/post/allPosts", "/post/certainPosts").permitAll()
+							auth.requestMatchers("/api/register", "/api/authenticate", "/api/allUsernames", "/api/userInfo", "/post/allPosts", "/post/certainPosts", "/track/getRand10").permitAll()
 							.anyRequest().authenticated();
 						});
 		 
