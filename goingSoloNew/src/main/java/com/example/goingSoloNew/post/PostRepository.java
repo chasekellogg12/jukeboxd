@@ -13,6 +13,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	@Query("SELECT p FROM Post p WHERE p.author IN :users")
     List<Post> findByAuthorsIn(@Param("users") List<MyUser> users);
 	
-    @Query("SELECT AVG(p.rating) FROM Post p WHERE p.trackId = :trackId")
+    @Query("SELECT AVG(p.rating) FROM Post p WHERE p.postSubject = :trackId")
     float findAverageRating(@Param("trackId") String trackId);
 }
