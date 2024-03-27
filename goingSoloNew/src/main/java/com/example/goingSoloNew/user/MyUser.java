@@ -2,6 +2,7 @@ package com.example.goingSoloNew.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.example.goingSoloNew.myLike.MyLike;
 import com.example.goingSoloNew.post.Post;
@@ -101,7 +102,9 @@ public class MyUser {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.avatar = "https://i.imgur.com/GBqcras.png";
+		Random random = new Random();
+		String randImageId = "" + random.nextInt(1, 300);
+		this.avatar = "https://picsum.photos/id/" + randImageId + "/200/300";
 		this.enabled = true;
 		
 		List<MyUser> emptyFollowersList = new ArrayList<MyUser>();
